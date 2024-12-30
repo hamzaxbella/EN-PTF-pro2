@@ -25,14 +25,13 @@ function vanish(){
 }
 // typing animation
 var typed = new Typed(".typing",{
-    // need change
-    strings:["Photographer","filmmaker","video editor"],
-    typeSpeed:100,
-    backSpeed:50,
-    loop:true,
+    strings:["Professional Photographer", "Creative Filmmaker", "Expert Video Editor", "Visual Storyteller"],
+    typeSpeed: 100,
+    backSpeed: 50,
+    loop: true,
 });
 // Sending emails via contact form
-function sendEmail(){
+async function  sendEmail(){
     // Get form elements
     const nameInput = document.querySelector(".name");
     const emailInput = document.querySelector(".email");
@@ -59,7 +58,7 @@ function sendEmail(){
         message_id: messageInput.value,
     }
 
-    emailjs.send("service_0rvj3ee","template_na8qpo",params) // i should be using environment variables here. but those ID's are broken anyways.
+    await emailjs.send("service_0rvj3ee","template_na8qpo",params) // i should be using environment variables here. but those ID's are broken anyways.
         .then(function(res){
             alert("Email sent successfully!");
             // Clear form after successful send
