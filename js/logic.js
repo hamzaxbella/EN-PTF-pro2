@@ -33,13 +33,43 @@ var typed = new Typed(".typing",{
 });
 // Sending emails via contact form
 function sendEmail(){
-    var params = {
-        from_name : document.querySelector(".name").value, //input name selector
-        email_id : document.querySelector(".email").value,//input email selector
-        subject_id : document.querySelector(".subject").value,//input subject selector
-        message_id : document.querySelector(".message").value, //input message eselector
+    // Get form elements
+    const nameInput = document.querySelector(".name");
+    const emailInput = document.querySelector(".email");
+    const subjectInput = document.querySelector(".subject");
+    const messageInput = document.querySelector(".message");
+
+    // Basic validation
+    if(!nameInput.value || !emailInput.value || !subjectInput.value || !messageInput.value) {
+        alert("Please fill in all fields");
+        return;
     }
-    emailjs.send("service_0rc23ee","template_na80qpo",params).then(function(res){
-        alert("email sent successfuly!" + res.status);
-    })
+
+    // Email format validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailInput.value)) {
+        alert("Please enter a valid email address");
+        return;
+    }
+
+    var params = {
+        from_name: nameInput.value,
+        email_id: emailInput.value,
+        subject_id: subjectInput.value,
+        message_id: messageInput.value,
+    }
+
+    emailjs.send("service_0rvj3ee","template_na8qpo",params) // i should be using environment variables here. but those ID's are broken anyways.
+        .then(function(res){
+            alert("Email sent successfully!");
+            // Clear form after successful send
+            nameInput.value = '';
+            emailInput.value = '';
+            subjectInput.value = '';
+            messageInput.value = '';
+        })
+        .catch(function(error) {
+            alert("Your email will not be sent because SMTP's are expensive. these things dont grow on trees.");
+            console.error("EmailJS Error:", error);
+        });
 }

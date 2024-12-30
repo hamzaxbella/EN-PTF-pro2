@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PTF-Pro2</title>
+    <link rel="icon" href="icons/logo.png" type="image/x-icon">
     <!-- css files -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
@@ -155,7 +156,7 @@
     <section id="contact">
         <div class="content">
             <h2 class="section-title">get in touch</h2>
-            <form class="contact-form">
+            <form class="contact-form" onsubmit={event.preventDefault()}>
                 <div class="col-6">
                     <input placeholder="name" type="text" class="name">
                     <input placeholder="email" type="email" class="email">    
